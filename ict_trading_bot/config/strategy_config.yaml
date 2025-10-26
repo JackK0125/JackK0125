@@ -1,0 +1,46 @@
+# ICT Trading Bot Configuration
+
+# Trading Symbol
+symbol: 'NQ=F'  # NASDAQ Futures
+
+# Data Configuration
+timeframe: '5m'
+start_date: '2024-01-01'  # Adjust as needed
+end_date: '2024-12-31'    # Adjust as needed
+
+# Strategy Parameters
+strategy:
+  # Fair Value Gap Settings
+  min_fvg_size: 0.0  # Minimum FVG size in points
+
+  # Liquidity Detection
+  equal_threshold: 0.0002  # 0.02% threshold for equal highs/lows
+  swing_window: 5  # Number of candles for swing point detection
+
+  # Bias Analysis
+  bias_lookback: 20  # Candles to look back for bias determination
+  fvg_lookback: 10   # Candles to look back for FVG respect/disrespect
+
+  # Risk Management
+  min_rr_ratio: 1.0  # Minimum risk/reward ratio
+  max_rr_ratio: 3.0  # Maximum risk/reward ratio
+
+# Trading Session (New York AM Session)
+session:
+  start_hour: 9
+  start_minute: 30
+  end_hour: 11
+  end_minute: 0
+
+# Backtesting
+backtest:
+  initial_capital: 50000
+  position_size: 1  # Number of contracts
+  commission: 2.5   # Per contract per side
+  slippage: 0.5     # Points
+
+# Output
+output:
+  reports_dir: './reports'
+  save_trades: true
+  generate_plots: true
