@@ -10,14 +10,20 @@ import sys
 import os
 from datetime import datetime, timedelta
 
-# Add the src directory to path to allow imports
-current_dir = os.path.dirname(os.path.abspath(__file__))
-if current_dir not in sys.path:
-    sys.path.insert(0, current_dir)
-
-from data.data_fetcher import DataFetcher
-from backtesting.backtest_engine import BacktestEngine
-from backtesting.performance_metrics import PerformanceMetrics
+# Import using relative or absolute imports depending on how the module is run
+try:
+    # Try relative imports first (when used as package)
+    from .data.data_fetcher import DataFetcher
+    from .backtesting.backtest_engine import BacktestEngine
+    from .backtesting.performance_metrics import PerformanceMetrics
+except ImportError:
+    # Fall back to absolute imports (when run directly)
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    if current_dir not in sys.path:
+        sys.path.insert(0, current_dir)
+    from data.data_fetcher import DataFetcher
+    from backtesting.backtest_engine import BacktestEngine
+    from backtesting.performance_metrics import PerformanceMetrics
 
 
 class ICTTradingBot:
